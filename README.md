@@ -14,10 +14,10 @@ Additionally, you need to have an AWS account and [configure the AWS CLI](https:
 The resources need to be created in a *Virtual Private Cloud* (VPC). Essentially, this is just a private network within the AWS cloud. For each account a default VPC is available. To get the ID of this VPC you can run the following command:
 
 ```
-VPC_ID=$(aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" \
-                               --query "Vpcs[0].VpcId" \
-                               --output text \
-                               --region eu-central-1)
+export TF_VAR_vpc_id=$(aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" \
+                                             --query "Vpcs[0].VpcId" \
+                                             --output text \
+                                             --region eu-central-1)
 ```
 
 In order to run the examples you need to perform the following steps in each directory:
@@ -26,13 +26,13 @@ In order to run the examples you need to perform the following steps in each dir
 export AWS_SDK_LOAD_CONFIG=1
 
 terraform init
-terraform apply -var "vpc_id=$VPC_ID"
+terraform apply
 ```
 
 By defaut, the infrastructure is created in the AWS region *Europe (Frankfurt)* (eu-central-1). To change this you can overwrite the variable with the value for a different AWS region:
 
 ```
-terraform apply -var "vpc_id=$VPC_ID" -var "aws_region=us-east-1"
+terraform apply -var "aws_region=us-east-1"
 ```
 
 In this case the infrastructure will be created in *US East (N. Virginia)*.
@@ -47,5 +47,5 @@ aws ec2 describe-regions --query "Regions[].RegionName"
 After you have tried out the examples you can destroy the resources via the following command:
 
 ```
-terraform destroy -var "vpc_id=$VPC_ID"
+terraform destroy
 ```
