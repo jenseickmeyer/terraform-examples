@@ -1,7 +1,7 @@
 # Terraform Examples
 This repository contains the following use cases for *Amazon Web Services* (AWS) implemented with Terraform:
 
-- [Example 1](example-1): Launch a simple EC2 instance which runs nginx as a Docker container
+- [Example 1](example-1): Launch a simple EC2 instance which runs [nginx](https://nginx.org) as a Docker container
 - [Example 2](example-2): Launch an *Application Load Balancer* (ALB) and attach an EC2 instance to it
 - [Example 3](example-3): Launch an *Application Load Balancer* (ALB) and attach an Autoscaling Group which is responsible for starting EC2 instances
 
@@ -29,7 +29,7 @@ terraform init
 terraform apply
 ```
 
-By defaut, the infrastructure is created in the AWS region *Europe (Frankfurt)* (eu-central-1). To change this you can overwrite the variable with the value for a different AWS region:
+By default, the infrastructure is created in the AWS region *Europe (Frankfurt)* (eu-central-1). To change this you can overwrite the variable with the value for a different AWS region:
 
 ```
 terraform apply -var "aws_region=us-east-1"
